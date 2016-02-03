@@ -35,6 +35,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var pollController = require('./controllers/poll');
 
 /**
  * API keys and Passport configuration.
@@ -207,6 +208,11 @@ app.get('/auth/steam', passport.authorize('openid', { state: 'SOME STATE' }));
 app.get('/auth/steam/callback', passport.authorize('openid', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
+
+/**
+ * Poll Routes
+ */
+app.get('/account/polls', passportConf.isAuthenticated, pollController.getAccountPolls);
 
 /**
  * Error Handler.
