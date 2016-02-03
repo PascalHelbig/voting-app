@@ -1,5 +1,5 @@
 /**
- * GET /account/pools
+ * GET /polls/account
  * get users polls
  */
 exports.getAccountPolls = function (req, res) {
@@ -9,4 +9,12 @@ exports.getAccountPolls = function (req, res) {
     {_id: 3, question: 'Question 3'}
   ];
   res.render('poll/account', {polls: polls});
+};
+
+/**
+ * GET /polls/new
+ * create a new poll
+ */
+exports.getNewPoll = function (req, res) {
+  res.render('poll/new');
 };

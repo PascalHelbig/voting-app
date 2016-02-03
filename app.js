@@ -212,7 +212,8 @@ app.get('/auth/steam/callback', passport.authorize('openid', { failureRedirect: 
 /**
  * Poll Routes
  */
-app.get('/account/polls', passportConf.isAuthenticated, pollController.getAccountPolls);
+app.get('/polls/account', passportConf.isAuthenticated, pollController.getAccountPolls);
+app.get('/polls/new', passportConf.isAuthenticated, pollController.getNewPoll);
 
 /**
  * Error Handler.
