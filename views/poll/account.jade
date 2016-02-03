@@ -2,6 +2,7 @@ extends ../layout
 
 block content
   h1 My Polls
+  a.btn.btn-primary(href='/polls/new') Create new poll
   ul
     - each poll in polls
       li=poll.question
