@@ -2,3 +2,6 @@ extends ../layout
 
 block content
   h1 My Polls
+  ul
+    - each poll in polls
+      li=poll.question
