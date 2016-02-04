@@ -18,3 +18,11 @@ exports.getAccountPolls = function (req, res) {
 exports.getNewPoll = function (req, res) {
   res.render('poll/new');
 };
+
+/**
+ * POST /polls/new
+ * save new poll
+ */
+exports.postNewPoll = function (req, res) {
+  res.json(req.body);
+};
