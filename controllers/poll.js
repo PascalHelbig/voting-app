@@ -36,3 +36,17 @@ exports.postNewPoll = function (req, res) {
     res.redirect('/polls/account');
   });
 };
+
+/**
+ * GET /polls/delete/:id
+ */
+exports.getDelete = function (req, res) {
+  Poll.remove({
+    _id: req.params.id,
+    user: req.user._id
+  }, function (err) {
+    if (err) return res.json(err);
+
+    res.redirect('/polls/account');
+  });
+};
