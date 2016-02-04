@@ -4,4 +4,7 @@ block content
   h1=poll.question
   ul
     - each answer in poll.answers
-      li #{answer.title} (#{answer.votes})
+      li
+        | #{answer.title} (#{answer.votes})
+        | &nbsp;
+        a(href='/polls/vote/' + answer._id).btn.btn-default Vote

@@ -84,7 +84,7 @@ exports.postPoll = function (req, res) {
       if (err) return res.json(err);
     });
   } else {
-    req.body.answers = req.body.answers.map(function(answer) {
+    req.body.answers = req.body.answers.map(function (answer) {
       answer.votes = 0;
       return answer;
     });
@@ -107,5 +107,16 @@ exports.postPoll = function (req, res) {
 exports.getPoll = function (req, res) {
   Poll.findById(req.params.id, function (err, poll) {
     res.render('poll/poll', {poll: poll});
+  });
+};
+
+/**
+ * GET /polls/vote/:answer
+ */
+exports.getVote = function (req, res) {
+  Poll.findOneAndUpdate({'answers._id': req.params.answer}, {$inc: {'answers.$.votes': 1}}).exec(function (err, poll) {
+    if (err) return res.json(err);
+
+    res.redirect('/polls/' + poll._id);
   });
 };
