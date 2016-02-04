@@ -89,3 +89,12 @@ exports.postPoll = function (req, res) {
   }
   res.redirect('/polls/account');
 };
+
+/**
+ * GET /polls/:id
+ */
+exports.getPoll = function (req, res) {
+  Poll.findById(req.params.id, function (err, poll) {
+    res.render('poll/poll', {poll: poll});
+  });
+};
