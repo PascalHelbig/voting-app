@@ -1,8 +1,13 @@
 var mongoose = require('mongoose');
 
+var answerSchema = new mongoose.Schema({
+  title: String,
+  votes: Number
+});
+
 var pollSchema = new mongoose.Schema({
   question: String,
-  answers: Array,
+  answers: [answerSchema],
   user: String
 });
 

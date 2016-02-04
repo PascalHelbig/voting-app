@@ -4,4 +4,4 @@ block content
   h1=poll.question
   ul
     - each answer in poll.answers
-      li=answer
+      li #{answer.title} (#{answer.votes})
