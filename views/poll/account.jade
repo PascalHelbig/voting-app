@@ -3,9 +3,22 @@ extends ../layout
 block content
   h1 My Polls
   a.btn.btn-primary(href='/polls/new') Create new poll
-  ul
-    - each poll in polls
-      li=poll.question
-      ul
-        - each answer in poll.answers
-          li #{answer}
+  br
+  table.table.table-hover
+    thead
+      tr
+        th Question
+        th Action
+    tbody
+      - each poll in polls
+        tr
+          td
+            span #{poll.question}
+          td
+            a.btn.btn-primary(href="#")
+              i.fa.fa-pencil
+              | edit
+            |
+            a.btn.btn-danger(href="#")
+              i.fa.fa-trash
+              | delete
