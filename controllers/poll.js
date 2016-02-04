@@ -1,3 +1,5 @@
+var Poll = require('../models/Poll');
+
 /**
  * GET /polls/account
  * get users polls
@@ -24,5 +26,14 @@ exports.getNewPoll = function (req, res) {
  * save new poll
  */
 exports.postNewPoll = function (req, res) {
-  res.json(req.body);
+  var poll = new Poll({
+    question: req.body.question,
+    answers: req.body.answers,
+    user: req.user._id
+  });
+  poll.save(function (err) {
+    if (err) return res.json(err);
+
+    res.redirect('/polls/account');
+  });
 };
