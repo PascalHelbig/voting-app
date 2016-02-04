@@ -15,11 +15,10 @@ block content
       label.col-sm-3.control-label(for='answers') Answers
       .col-sm-7#answers
         - each answer, index in poll.answers
-          .row(id="row" + index)
-            .col-sm-10
-              input.form-control(type='text', name='answers',value=answer)
-            .col-sm-2
-              button.btn(type="button", name="remove", id="remove" + index) X
+          include answer_form
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn(type="button")#addAnswer Add Answer
     .form-group
       .col-sm-offset-3.col-sm-4
         button.btn.btn-primary(type='submit')
@@ -29,3 +28,7 @@ block content
         a.btn.btn-default(href='/polls/account')
           i.fa.fa-close
           | Close
+
+  #answerTemplate(style="display:none")
+    - var index = '{{index}}'
+    include answer_form
