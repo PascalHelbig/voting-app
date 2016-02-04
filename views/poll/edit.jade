@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  h1 New Poll
+  h1 Edit Poll
 
   form.form-horizontal(action='/polls', method='POST')
     input(type='hidden', name='_csrf', value=_csrf)

@@ -217,6 +217,7 @@ app.get('/polls/new', passportConf.isAuthenticated, pollController.getNewPoll);
 app.post('/polls/new', passportConf.isAuthenticated, pollController.postNewPoll);
 app.get('/polls/delete/:id', passportConf.isAuthenticated, pollController.getDelete);
 app.get('/polls/edit/:id', passportConf.isAuthenticated, pollController.getEdit);
+app.post('/polls', passportConf.isAuthenticated, pollController.postPoll);
 
 /**
  * Error Handler.

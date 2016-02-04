@@ -17,7 +17,7 @@ exports.getAccountPolls = function (req, res) {
  * create a new poll
  */
 exports.getNewPoll = function (req, res) {
-  res.render('poll/new');
+  res.render('poll/edit', {poll: {answers: ["", ""]}});
 };
 
 /**
@@ -63,4 +63,29 @@ exports.getEdit = function (req, res) {
 
     res.render('poll/edit', {poll: poll});
   });
+};
+
+/**
+ * POST /polls
+ */
+exports.postPoll = function (req, res) {
+  var id = req.body._id;
+  if (id !== "") {
+    Poll.findOneAndUpdate({
+      _id: id,
+      user: req.user._id
+    }, req.body, {upsert: true}, function (err) {
+      if (err) return res.json(err);
+    });
+  } else {
+    var poll = new Poll({
+      question: req.body.question,
+      answers: req.body.answers,
+      user: req.user._id
+    });
+    poll.save(function (err) {
+      if (err) return res.json(err);
+    });
+  }
+  res.redirect('/polls/account');
 };
