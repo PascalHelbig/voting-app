@@ -14,9 +14,12 @@ block content
     .form-group
       label.col-sm-3.control-label(for='answers') Answers
       .col-sm-7#answers
-        - each answer in poll.answers
-          input.form-control(type='text', name='answers',value=answer)
-          br
+        - each answer, index in poll.answers
+          .row(id="row" + index)
+            .col-sm-10
+              input.form-control(type='text', name='answers',value=answer)
+            .col-sm-2
+              button.btn(type="button", name="remove", id="remove" + index) X
     .form-group
       .col-sm-offset-3.col-sm-4
         button.btn.btn-primary(type='submit')
