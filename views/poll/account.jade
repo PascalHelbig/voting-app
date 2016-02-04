@@ -6,3 +6,6 @@ block content
   ul
     - each poll in polls
       li=poll.question
+      ul
+        - each answer in poll.answers
+          li #{answer}
