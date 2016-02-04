@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  h1 New Poll
+
+  form.form-horizontal(action='/polls', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    input(type='hidden', name='_id', value=poll._id)
+    .form-group
+      label.col-sm-3.control-label(for='question') Question
+      .col-sm-7
+        input.form-control(type='text', name='question', id='question',value=poll.question)
+    hr
+    .form-group
+      label.col-sm-3.control-label(for='answers') Answers
+      .col-sm-7#answers
+        - each answer in poll.answers
+          input.form-control(type='text', name='answers',value=answer)
+          br
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn-primary(type='submit')
+          i.fa.fa-save
+          | Save Poll
+        | &nbsp;
+        a.btn.btn-default(href='/polls/account')
+          i.fa.fa-close
+          | Close

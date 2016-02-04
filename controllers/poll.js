@@ -50,3 +50,17 @@ exports.getDelete = function (req, res) {
     res.redirect('/polls/account');
   });
 };
+
+/**
+ * GET /polls/edit/:id
+ */
+exports.getEdit = function (req, res) {
+  Poll.findOne({
+    _id: req.params.id,
+    user: req.user._id
+  }, function (err, poll) {
+    if (err) return res.json(err);
+
+    res.render('poll/edit', {poll: poll});
+  });
+};
