@@ -132,14 +132,14 @@ exports.getVote = function (req, res) {
 /**
  * POST /polls/:id/postNewAnswer
  */
-exports.postNewAnswer = function(req, res) {
+exports.postNewAnswer = function (req, res) {
   var pollId = req.params.id;
   var newAnswer = req.body.newAnswer;
 
   Poll.findByIdAndUpdate(
     pollId,
     {$push: {answers: {title: newAnswer, votes: 1}}},
-    function(err, poll) {
+    function (err, poll) {
       res.redirect('/polls/' + pollId);
     }
   );
