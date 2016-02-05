@@ -184,6 +184,7 @@ app.get('/polls/edit/:id', passportConf.isAuthenticated, pollController.getEdit)
 app.post('/polls', passportConf.isAuthenticated, pollController.postPoll);
 app.get('/polls/:id', pollController.getPoll);
 app.get('/polls/vote/:answer', pollController.getVote);
+app.post('/polls/:id/postNewAnswer', passportConf.isAuthenticated, pollController.postNewAnswer);
 
 /**
  * Error Handler.

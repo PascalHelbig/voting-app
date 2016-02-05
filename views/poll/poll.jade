@@ -8,6 +8,12 @@ block content
         | #{answer.title} (#{answer.votes})
         | &nbsp;
         a(href='/polls/vote/' + answer._id).btn.btn-default Vote
+  if user
+    form(method='POST', action='/polls/' + poll.id + '/postNewAnswer')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        label(for='postNewAnswer') new answer:
+        input.form-control#newAnswer(type='text', name='newAnswer')
   canvas#pollChart(width="400",height="400")
   #pollAnswers(style="display: none;")=JSON.stringify(poll.answers)
 
