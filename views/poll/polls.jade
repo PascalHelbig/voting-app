@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  h1 All Polls
+  if user
+    a.btn.btn-default(href='/polls/account') my polls
+    | &nbsp;
+    a.btn.btn-primary(href='/polls/new')
+      i.fa.fa-plus
+      | add poll
+  br
+  -each poll in polls
+    h2
+      a(href="/polls/" + poll._id)=poll.question
+    ul
+      -each answer in poll.answers
+        li #{answer.title} (votes: #{answer.votes})

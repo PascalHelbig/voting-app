@@ -1,5 +1,15 @@
 var Poll = require('../models/Poll');
 
+
+/**
+ * GET /polls
+ */
+exports.getPolls = function (req, res) {
+  Poll.find({}, function (err, polls) {
+    res.render('poll/polls', {polls: polls, user: req.user});
+  });
+};
+
 /**
  * GET /polls/account
  * get users polls
