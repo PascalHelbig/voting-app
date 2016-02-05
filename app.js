@@ -178,7 +178,6 @@ app.get('/auth/steam/callback', passport.authorize('openid', { failureRedirect: 
 app.get('/polls', pollController.getPolls);
 app.get('/polls/account', passportConf.isAuthenticated, pollController.getAccountPolls);
 app.get('/polls/new', passportConf.isAuthenticated, pollController.getNewPoll);
-app.post('/polls/new', passportConf.isAuthenticated, pollController.postNewPoll);
 app.get('/polls/delete/:id', passportConf.isAuthenticated, pollController.getDelete);
 app.get('/polls/edit/:id', passportConf.isAuthenticated, pollController.getEdit);
 app.post('/polls', passportConf.isAuthenticated, pollController.postPoll);

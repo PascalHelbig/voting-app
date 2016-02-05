@@ -31,23 +31,6 @@ exports.getNewPoll = function (req, res) {
 };
 
 /**
- * POST /polls/new
- * save new poll
- */
-exports.postNewPoll = function (req, res) {
-  var poll = new Poll({
-    question: req.body.question,
-    answers: req.body.answers,
-    user: req.user._id
-  });
-  poll.save(function (err) {
-    if (err) return res.json(err);
-
-    res.redirect('/polls/account');
-  });
-};
-
-/**
  * GET /polls/delete/:id
  */
 exports.getDelete = function (req, res) {
@@ -80,6 +63,10 @@ exports.getEdit = function (req, res) {
  */
 exports.postPoll = function (req, res) {
   var id = req.body._id;
+
+  if (!Array.isArray(req.body.answers)) {
+    req.body.answers = [req.body.answers];
+  }
 
   var answers = req.body.answers.map(function (answer) {
     return {
