@@ -8,3 +8,8 @@ block content
         | #{answer.title} (#{answer.votes})
         | &nbsp;
         a(href='/polls/vote/' + answer._id).btn.btn-default Vote
+  canvas#pollChart(width="400",height="400")
+  #pollAnswers(style="display: none;")=JSON.stringify(poll.answers)
+
+  script(src='../js/Chart.min.js')
+  script(src='../js/poll.js')
